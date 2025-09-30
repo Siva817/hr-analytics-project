@@ -11,14 +11,16 @@ FROM employee_data;
 -- 2. Show all employees who work in the "IT/IS" department
 SELECT *
 FROM employee_data
-WHERE DepartmentType = 'IT/IS';
+WHERE DepartmentType = 'IT/IS'
+limit 5;
 
 -- 3. Count the total number of employees
 SELECT COUNT(*) AS TotalEmployees
-FROM employee_data;
+FROM employee_data
+;
 
--- 4. List employees whose EmployeeStatus is 'Terminated'
-SELECT *
+-- 4. List employees whose EmployeeStatus is Terminated
+SELECT EmpID, FirstName, LastName, StartDate, ExitDate, EmployeeStatus
 FROM employee_data
 WHERE EmployeeStatus LIKE '%terminated%';
 -- Using LIKE '%terminated%' instead of '=' because the EmployeeStatus column contains values 
@@ -27,17 +29,17 @@ WHERE EmployeeStatus LIKE '%terminated%';
 
 -- 5. Find employees born after 1990-01-01
 -- Convert DOB from DD-MM-YYYY text to DATE for comparison
-SELECT *
+SELECT EmpID, FirstName, LastName, DOB
 FROM employee_data
 WHERE str_to_date(DOB, '%d-%m-%Y') > '1990-01-01';
 
 -- 6. Show all employees with GenderCode = 'Female'
-SELECT *
+SELECT EmpID, FirstName, LastName, GenderCode
 FROM employee_data
 WHERE GenderCode = 'Female';
 
 -- 7. List all applicants for the job title "Software Engineer"
-SELECT *
+SELECT `Applicant ID`, `First Name`, `Last Name`, `Job Title`
 FROM recruitment_data
 WHERE `Job Title` = 'Software Engineer';
 
@@ -47,7 +49,7 @@ FROM recruitment_data
 GROUP BY Gender;
 
 -- 9. Show all trainings attended by employee with Employee ID = 1001
-SELECT *
+SELECT `Employee ID`, `Training Date`, `Training Program Name`
 FROM training_and_development_data
 WHERE `Employee ID` = 1001;
 
